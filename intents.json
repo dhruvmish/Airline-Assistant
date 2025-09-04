@@ -1,0 +1,116 @@
+{
+  "intents": [
+    {
+      "tag": "greeting",
+      "patterns": [
+        "Hi", "Hello", "Hey", "Good morning", "Good afternoon", "Good evening",
+        "How are you", "Is anyone there", "What's up", "Hi there"
+      ],
+      "responses": [
+        "Hello! I'm your airline assistant. I can help you with flight information, bookings, and travel queries.",
+        "Hi there! How can I assist you with your travel needs today?",
+        "Hey! I'm here to help with flights, bookings, and airline information. What do you need?"
+      ]
+    },
+    {
+      "tag": "flight_status",
+      "patterns": [
+        "flight status", "is my flight on time", "flight delayed", "check flight",
+        "flight information", "when does flight depart", "flight departure time",
+        "arrival time", "flight schedule", "is flight cancelled"
+      ],
+      "responses": [
+        "I can check flight status for you. Please provide the flight number (e.g., AA123) or route.",
+        "Sure! I'll look up the flight status. What's the flight number or departure city?",
+        "I can get real-time flight information. Which flight are you asking about?"
+      ]
+    },
+    {
+      "tag": "booking_inquiry",
+      "patterns": [
+        "booking", "reservation", "my booking", "booking status", "confirm booking",
+        "booking details", "reservation number", "booking reference", "ticket",
+        "find my booking", "check reservation"
+      ],
+      "responses": [
+        "I can help you with booking information. Do you have a booking reference number?",
+        "Let me help you find your booking details. What's your booking ID or last name?",
+        "I'll check your reservation. Please provide your booking reference or flight details."
+      ]
+    },
+    {
+      "tag": "flight_search",
+      "patterns": [
+         "find flights",
+    "search flights",
+    "flight from",
+    "flights to",
+    "book flight",
+    "available flights",
+    "flight options",
+    "travel from",
+    "fly to",
+    "departure city",
+    "destination",
+    "round trip",
+    "one way",
+    "New York to Los Angeles",
+    "flights from Boston to Chicago",
+    "London to Paris"
+      ],
+      "responses": [
+        "I can search for available flights. Which cities are you traveling between?",
+        "Let me help you find flights. What's your departure and destination city?",
+        "I'll search for flight options. Where are you flying from and to?"
+      ]
+    },
+    {
+      "tag": "price_inquiry",
+      "patterns": [
+        "flight price", "cost", "fare", "how much", "ticket price", "price range",
+        "cheap flights", "best price", "flight cost", "fare comparison", "budget"
+      ],
+      "responses": [
+        "I can help you find flight prices. Which route are you interested in?",
+        "Flight prices vary by route and date. What destination are you considering?",
+        "I'll check current flight fares. Where would you like to travel?"
+      ]
+    },
+    {
+      "tag": "help",
+      "patterns": [
+        "help", "what can you do", "how can you help", "assistance", "support",
+        "I need help", "can you help me", "what services", "features"
+      ],
+      "responses": [
+        "I can help you with flight status, booking information, flight search, and travel queries. What do you need assistance with?",
+        "I'm here to assist with flights and travel! I can check flight status, find bookings, search for flights, and answer travel questions.",
+        "My services include: flight status updates, booking inquiries, flight searches, and general travel assistance. How can I help you today?"
+      ]
+    },
+    {
+      "tag": "thanks",
+      "patterns": [
+        "thank you", "thanks", "appreciate it", "great", "awesome", "perfect",
+        "that's helpful", "good", "excellent", "wonderful"
+      ],
+      "responses": [
+        "You're welcome! Is there anything else I can help you with?",
+        "Happy to help! Let me know if you need any other travel assistance.",
+        "Glad I could assist! Feel free to ask if you have more questions."
+      ]
+    },
+    {
+      "tag": "goodbye",
+      "patterns": [
+        "bye", "goodbye", "see you", "talk later", "that's all", "exit",
+        "quit", "done", "finish", "end"
+      ],
+      "responses": [
+        "Goodbye! Have a wonderful trip and fly safe!",
+        "Take care! Feel free to come back if you need any travel assistance.",
+        "Safe travels! Thanks for using our airline assistance service."
+      ]
+    }
+  ]
+}
