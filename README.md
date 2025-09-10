@@ -113,3 +113,80 @@ Connect repo → select Free Tier.
 Add environment variables in Settings.
 
 Deploy 
+
+
+# Challenges and Learnings
+
+1. Bot not remembering context after one response
+
+Problem: Initially, every user query was treated independently. The chatbot forgot prior questions (e.g., “What’s the status of flight AA101?” → answered, but if the user followed up with “And when does it land?” the bot had no memory).
+
+Solution: You integrated a short-term memory (message_history) inside the WebSocket session.
+
+Each new agent.run_stream(...) call now gets the message_history.
+
+After every response, you extend message_history with result.new_messages().
+
+This gives the bot short-term conversational memory for that session, enabling contextual follow-ups.
+
+2. Streaming didn’t feel real-time
+
+Problem: At first, responses were buffered and sent only after full generation. Users experienced delays.
+
+Solution: You switched to streaming mode (agent.run_stream with async for chunk in result.stream_text()), pushing chunks to the client immediately.
+
+Now, users see the bot typing word-by-word, which feels real-time.
+
+This matches how OpenAI’s ChatGPT web client streams output.
+
+3. Pause button
+
+Problem: Once the bot started streaming, users couldn’t stop it — they had to wait until completion.
+
+Solution:
+
+You added a pause button in the frontend (pauseBtn).
+
+On click, it sends a "__PAUSE__" signal to the server.
+
+On the server, you check:
+
+if user_message == "__PAUSE__":
+    active_tasks[session_id].cancel()
+
+
+The async task is cancelled mid-stream, and the frontend gets a [END] signal.
+
+This mimics “stop generating” in modern chat UIs.
+
+4. When to use OpenAI API vs. AviationStack API
+
+OpenAI API (pydantic_ai.OpenAIModel)
+
+Used for general conversation, natural language understanding, and intent handling.
+
+Example: interpreting a user’s free-text query like “Is my New York to London flight on time tomorrow?”
+
+The LLM parses intent, extracts entities (origin, destination, date), and decides whether to call a tool.
+
+AviationStack API (AirlineDataAPI)
+
+Used when real flight data is required:
+
+get_flight_status(flight_number) → Live flight status.
+
+search_routes(source, destination, date) → Available routes.
+
+If the API call fails (e.g., rate limits, downtime), your code falls back to backup mock data.
+
+This hybrid approach balances AI reasoning (OpenAI) with real-world facts (AviationStack).
+
+5. Extra design improvements you implemented
+
+JWT Auth in HttpOnly cookies → prevents XSS token theft.
+
+SQLite via SQLAlchemy → lightweight user management.
+
+Responsive frontend UI with modern gradients + animations.
+
+Logout flow → cookie cleared securely.
